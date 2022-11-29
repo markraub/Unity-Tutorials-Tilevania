@@ -220,6 +220,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d780eb36b5a6b8644bc684674aba0737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayLength: 120
+  skygradient:
+    serializedVersion: 2
+    key0: {r: 0.8773585, g: 0.7139545, b: 0.3600481, a: 1}
+    key1: {r: 0.6556604, g: 0.93874204, b: 1, a: 1}
+    key2: {r: 0.6792453, g: 0.25760058, b: 0.20825918, a: 0}
+    key3: {r: 0.07738519, g: 0.17548177, b: 0.4433962, a: 0}
+    key4: {r: 0.10270179, g: 0.14718397, b: 0.42688546, a: 0}
+    key5: {r: 0.17864339, g: 0.062299743, b: 0.3773585, a: 0}
+    key6: {r: 0.87843144, g: 0.7137255, b: 0.36078432, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 10601
+    ctime2: 31418
+    ctime3: 39899
+    ctime4: 40092
+    ctime5: 53777
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
 --- !u!1 &1043114012
 GameObject:
   m_ObjectHideFlags: 0
