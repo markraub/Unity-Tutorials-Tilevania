@@ -23,7 +23,6 @@ public class Daytime : MonoBehaviour
         }
         Camera cam = GetComponent<Camera>();
         cam.backgroundColor = skygradient.Evaluate(currentTime/dayLength);
-        Debug.Log(currentTime);
         
     }
 }
