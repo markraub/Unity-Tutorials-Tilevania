@@ -8,8 +8,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;
     Animator playerAnimator;
+    AudioSource playerAudioSource;
 
     Collider2D playerCollider;
+
+    float startingGravity;
 
 
     [Header("Player Physics")]
@@ -17,18 +20,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight;
     [SerializeField] float climbSpeed;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip climbSound;
+
     void Awake() 
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        playerAudioSource = GetComponent<AudioSource>();
+        startingGravity = playerRigidBody.gravityScale;
 
     }
 
-    void Start()
-    {
-         
-    }
 
     void Update()
     {
@@ -71,22 +76,21 @@ public class PlayerMovement : MonoBehaviour
     void Climb()
     {
 
-        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ladders")))
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Ladders")))
         {
-            Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, moveInput.y * climbSpeed);
-            playerRigidBody.velocity = climbVelocity;
-
-            if (playerRigidBody.velocity.y > 0)
-            {
-                playerAnimator.SetBool("isClimbing", true);
-            }
-            
-        }
-        else
-        {
+            playerRigidBody.gravityScale = startingGravity;
             playerAnimator.SetBool("isClimbing", false);
+            return; 
         }
+        playerRigidBody.gravityScale = 0f;            
+        Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, moveInput.y * climbSpeed);
+        playerRigidBody.velocity = climbVelocity;
+        
+        bool playerHasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
 
+        playerAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
+
+    
     }
 
 
@@ -94,10 +98,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(val.isPressed && playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
+
             playerRigidBody.velocity += new Vector2(0, jumpHeight);
+            playerAudioSource.PlayOneShot(jumpSound, 0.5f);
         }
         
     }
+
+
 
 
 
