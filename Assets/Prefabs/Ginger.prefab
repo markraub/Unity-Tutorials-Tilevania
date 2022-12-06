@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2017868303
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1818130073, guid: dde3c6ba6ecf7f040a0b918febe169ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -193,6 +193,7 @@ MonoBehaviour:
   runSpeed: 5
   jumpHeight: 15
   climbSpeed: 5
+  deathFling: 20
   jumpSound: {fileID: 8300000, guid: d90a93c2d69686a40a583ccc6bf3b7f2, type: 3}
   climbSound: {fileID: 8300000, guid: 28679150475e93a4baca6efe5d859071, type: 3}
 --- !u!82 &2027617916318819439

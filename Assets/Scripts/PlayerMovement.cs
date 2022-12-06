@@ -10,16 +10,21 @@ public class PlayerMovement : MonoBehaviour
     Animator playerAnimator;
     AudioSource playerAudioSource;
 
+    SpriteRenderer playerSpriteRenderer;
+
     Collider2D playerCollider;
     Collider2D feetCollider;
 
     float startingGravity;
+
+    bool isAlive;
 
 
     [Header("Player Physics")]
     [SerializeField] float runSpeed;
     [SerializeField] float jumpHeight;
     [SerializeField] float climbSpeed;
+    [SerializeField] float deathFling;
 
     [Header("Sound Effects")]
     [SerializeField] AudioClip jumpSound;
@@ -32,28 +37,46 @@ public class PlayerMovement : MonoBehaviour
         playerCollider = GetComponent<CapsuleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
         playerAudioSource = GetComponent<AudioSource>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
         startingGravity = playerRigidBody.gravityScale;
+
+        isAlive = true;
 
     }
 
 
     void Update()
     {
+        bool hasVerticalVelocity = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
+
+        if (!isAlive && !hasVerticalVelocity)
+        {
+            playerAnimator.SetTrigger("Dead");
+        }
+
+        if (!isAlive) { return;}
         Run();
         FlipSprite();
         Climb();
+        Die();
+        
+
     }
 
     void OnMove(InputValue val)
     {
+        if (!isAlive) { return;}
         moveInput = val.Get<Vector2>();
 
     }
 
     void Run()
     {
+
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = playerVelocity;
+        
+
         
     }
 
@@ -98,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue val)
     {
+        if (!isAlive) { return;}
         if(val.isPressed && feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
 
@@ -107,8 +131,17 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    void Die()
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")) || feetCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
+        {
+            isAlive = false;
+            playerAnimator.SetTrigger("Dying");
+            playerSpriteRenderer.color = Color.red;
+            playerRigidBody.velocity = new Vector2(0, 0);
+            playerRigidBody.velocity += new Vector2(0, deathFling);
 
-
-
+        }
+    }
 
 }
