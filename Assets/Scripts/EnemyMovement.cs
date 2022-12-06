@@ -8,15 +8,19 @@ public class EnemyMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     Rigidbody2D enemyrb;
+    
+    
 
 
-
+    
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         enemyrb = GetComponent<Rigidbody2D>();
-
+        
+        
+        
     }
 
     void Update()
