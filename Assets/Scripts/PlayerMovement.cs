@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     AudioSource playerAudioSource;
 
     Collider2D playerCollider;
+    Collider2D feetCollider;
 
     float startingGravity;
 
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
         playerAudioSource = GetComponent<AudioSource>();
         startingGravity = playerRigidBody.gravityScale;
 
@@ -96,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue val)
     {
-        if(val.isPressed && playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if(val.isPressed && feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
 
             playerRigidBody.velocity += new Vector2(0, jumpHeight);
