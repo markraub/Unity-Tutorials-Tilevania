@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
 
         playerAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
+        Debug.Log(playerHasVerticalSpeed);
 
     
     }
@@ -137,7 +138,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isAlive = false;
             playerAnimator.SetTrigger("Dying");
-            playerSpriteRenderer.color = Color.red;
             playerRigidBody.velocity = new Vector2(0, 0);
             playerRigidBody.velocity += new Vector2(0, deathFling);
 
