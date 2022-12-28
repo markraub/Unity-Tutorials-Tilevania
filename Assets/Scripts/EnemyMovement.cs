@@ -60,6 +60,13 @@ public class EnemyMovement : MonoBehaviour
         isAlive = false;
         //freeze in air
         enemyrb.constraints = RigidbodyConstraints2D.FreezePosition;
+        //change layer to remove collision
+        gameObject.layer = 9;
+        foreach (Transform child in gameObject.transform)
+        {
+            child.gameObject.layer = 9;
+
+        }
    
         
 

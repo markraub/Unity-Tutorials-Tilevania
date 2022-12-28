@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     SpriteRenderer playerSpriteRenderer;
 
+    ParticleSystem JumpParticles;
+
     Collider2D playerCollider;
     Collider2D feetCollider;
 
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         feetCollider = GetComponent<BoxCollider2D>();
         playerAudioSource = GetComponent<AudioSource>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        JumpParticles = GetComponent<ParticleSystem>();
         startingGravity = playerRigidBody.gravityScale;
         playerCollider.sharedMaterial = alivePM;
         
@@ -137,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isAlive) { return;}
         if(val.isPressed && feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-
+            JumpParticles.Play();
             playerRigidBody.velocity += new Vector2(0, jumpHeight);
             playerAudioSource.PlayOneShot(jumpSound, 0.5f);
         }
@@ -169,7 +172,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        playerAudioSource.PlayOneShot(footstepSound, 0.5f);
+        if (other.gameObject.layer == 3)
+        {
+            JumpParticles.Stop();
+            playerAudioSource.PlayOneShot(footstepSound, 0.5f);
+        }
+
         
     }
 

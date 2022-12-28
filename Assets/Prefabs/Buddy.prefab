@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9064565344809878177}
   m_Layer: 8
-  m_Name: Swipe
+  m_Name: Claw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402632972769587672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -0.33, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -237,6 +237,9 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: d90a93c2d69686a40a583ccc6bf3b7f2, type: 3}
   climbSound: {fileID: 8300000, guid: 28679150475e93a4baca6efe5d859071, type: 3}
   footstepSound: {fileID: 8300000, guid: 3e54d9e7c70444017b6e43c3e8757314, type: 3}
+  Claw: {fileID: 1402632972769587672}
+  SwipeObject: {fileID: 9166378767929511673, guid: 2412e4d62a6ed4d3f88e432d00be70b9, type: 3}
+  SwipeCooldown: 3
 --- !u!95 &1752020274394089587
 Animator:
   serializedVersion: 4
