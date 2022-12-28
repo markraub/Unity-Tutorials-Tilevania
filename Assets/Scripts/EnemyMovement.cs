@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyrb;
     Collider2D wallCollider;
 
+    bool isAlive = true;
+
 
     [Header("Physics")]
     [SerializeField] float moveSpeed = 1f;
@@ -27,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        
+        if (!isAlive){return;}
         Walk(moveSpeed);
         bool hasHorizontalVelocity = Mathf.Abs(enemyrb.velocity.x) > Mathf.Epsilon;
         animator.SetBool("isRunning", hasHorizontalVelocity); 
@@ -47,4 +49,22 @@ public class EnemyMovement : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, 1);
     }
 
+    public void Kill()
+    {
+        // play animation
+        animator.SetTrigger("Hit");
+        //play sound effect
+        AudioSource EnemySFX = GetComponent<AudioSource>();
+        EnemySFX.Play();
+        //kill motion
+        isAlive = false;
+        //freeze in air
+        enemyrb.constraints = RigidbodyConstraints2D.FreezePosition;
+   
+        
+
+
+        Destroy(gameObject, EnemySFX.clip.length);
+
+    }
 }

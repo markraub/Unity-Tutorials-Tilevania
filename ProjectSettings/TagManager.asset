@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Background
   - Enemy
   - Hazards
-  - 
+  - Swipe
   - 
   - 
   - 
@@ -55,4 +56,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2017868303
+    locked: 0
+  - name: Swipe
+    uniqueID: 247358841
     locked: 0

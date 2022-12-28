@@ -20,15 +20,25 @@ public class PlayerMovement : MonoBehaviour
     bool isAlive;
 
 
+
+
     [Header("Player Physics")]
     [SerializeField] float runSpeed;
     [SerializeField] float jumpHeight;
     [SerializeField] float climbSpeed;
     [SerializeField] float deathFling;
+    [SerializeField] PhysicsMaterial2D alivePM;
+    [SerializeField] PhysicsMaterial2D deadPM;
 
     [Header("Sound Effects")]
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip climbSound;
+    [SerializeField] AudioClip footstepSound;
+
+    [Header("Combat")]
+    [SerializeField] GameObject Claw;
+    [SerializeField] GameObject SwipeObject;
+    [SerializeField] float SwipeCooldown = 0.25f;
 
     void Awake() 
     {
@@ -39,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         playerAudioSource = GetComponent<AudioSource>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         startingGravity = playerRigidBody.gravityScale;
+        playerCollider.sharedMaterial = alivePM;
+        
 
         isAlive = true;
 
@@ -55,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!isAlive) { return;}
+        SwipeCooldown -= Time.deltaTime;
         Run();
         FlipSprite();
         Climb();
@@ -114,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
 
         playerAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
-        Debug.Log(playerHasVerticalSpeed);
 
     
     }
@@ -132,6 +144,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    void OnFire(InputValue val) 
+    {
+        if (isAlive && SwipeCooldown <= 0)
+        {
+            GameObject SwipeInstance = Instantiate(SwipeObject, Claw.transform.position, Claw.transform.rotation); 
+            SwipeCooldown = 0.25f;
+        }
+        
+    }
+
     void Die()
     {
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")) || feetCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
@@ -140,8 +162,15 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetTrigger("Dying");
             playerRigidBody.velocity = new Vector2(0, 0);
             playerRigidBody.velocity += new Vector2(0, deathFling);
+            playerCollider.sharedMaterial = deadPM;
 
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        playerAudioSource.PlayOneShot(footstepSound, 0.5f);
+        
     }
 
 }

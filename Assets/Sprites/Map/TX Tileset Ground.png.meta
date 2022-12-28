@@ -615,7 +615,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -629,7 +629,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 31
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -651,7 +651,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 3
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -948,7 +948,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -12}
+        - {x: -9, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
       spriteID: df9ec05dcac2dce50800000000000000
@@ -969,7 +974,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
       spriteID: 4330d05b2a5a64090800000000000000
@@ -990,7 +999,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
       spriteID: f54f54893aed97b80800000000000000
@@ -1011,7 +1024,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
       spriteID: 9392eb15eac96f080800000000000000
@@ -4055,7 +4072,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TX Tileset Ground_130: 1921895609169914298
+      TX Tileset Ground_144: -1748285848841930389
       TX Tileset Ground_14: -7833218270530847676
       TX Tileset Ground_50: 724395971767576797
       TX Tileset Ground_2: 21300030
@@ -4201,17 +4218,17 @@ TextureImporter:
       TX Tileset Ground_43: 1922864012054007380
       TX Tileset Ground_83: -48007363876803032
       TX Tileset Ground_102: -9023639060672660837
-      TX Tileset Ground_151: 59002303270103204
-      TX Tileset Ground_108: -4971725082711922011
       TX Tileset Ground_125: -8241012424202210315
+      TX Tileset Ground_108: -4971725082711922011
+      TX Tileset Ground_8: -5568849602974404179
       TX Tileset Ground_51: -2198753249273810656
       TX Tileset Ground_0: 8652677587666043219
+      TX Tileset Ground_95: 2013731596871720695
+      TX Tileset Ground_151: 59002303270103204
       TX Tileset Ground_113: -2205998391313803506
       TX Tileset Ground_116: -3812786896775926999
-      TX Tileset Ground_95: 2013731596871720695
-      TX Tileset Ground_144: -1748285848841930389
-      TX Tileset Ground_8: -5568849602974404179
       TX Tileset Ground_150: 4945285195332565790
+      TX Tileset Ground_130: 1921895609169914298
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
