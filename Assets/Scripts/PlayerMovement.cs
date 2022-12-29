@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -147,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+
     void OnFire(InputValue val) 
     {
         if (isAlive && SwipeCooldown <= 0)
@@ -166,9 +168,17 @@ public class PlayerMovement : MonoBehaviour
             playerRigidBody.velocity = new Vector2(0, 0);
             playerRigidBody.velocity += new Vector2(0, deathFling);
             playerCollider.sharedMaterial = deadPM;
-
+            StartCoroutine("ReloadLevel");
+            
         }
     }
+
+    IEnumerator ReloadLevel()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

@@ -19,7 +19,7 @@ TagManager:
   - Enemy
   - Hazards
   - Swipe
-  - 
+  - Exit
   - 
   - 
   - 
@@ -54,9 +54,18 @@ TagManager:
   - name: Hazards
     uniqueID: 731109635
     locked: 0
+  - name: Exit
+    uniqueID: 1786167297
+    locked: 0
   - name: Player
     uniqueID: 2017868303
     locked: 0
   - name: Swipe
     uniqueID: 247358841
+    locked: 0
+  - name: Foreground
+    uniqueID: 494373201
+    locked: 0
+  - name: UI
+    uniqueID: 707681883
     locked: 0

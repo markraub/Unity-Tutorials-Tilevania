@@ -191,11 +191,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 5
+  maxFallSpeed: 10
   jumpHeight: 15
   climbSpeed: 5
   deathFling: 20
+  alivePM: {fileID: 0}
+  deadPM: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: d90a93c2d69686a40a583ccc6bf3b7f2, type: 3}
   climbSound: {fileID: 8300000, guid: 28679150475e93a4baca6efe5d859071, type: 3}
+  footstepSound: {fileID: 0}
+  Claw: {fileID: 0}
+  SwipeObject: {fileID: 0}
+  SwipeCooldown: 0.25
 --- !u!82 &2027617916318819439
 AudioSource:
   m_ObjectHideFlags: 0
